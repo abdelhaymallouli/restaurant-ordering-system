@@ -115,6 +115,6 @@ foreach ($plats as $plat) {
     <a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
 
 </body>
-<script src="frontend/js/script.js"></script>
+<script src="frontend/js/script.js" defer></script>
 
 </html>
