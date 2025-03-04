@@ -1,15 +1,15 @@
 <header>
     <a href="index.php" class="logo"><i class="fas fa-utensils"></i>M2l Restaurant</a>
     <nav class="navbar">
-        <div class="card-shopping">
-            <img src="frontend/icons/shopping-cart.png" alt="Shopping Cart" id="cart-icon">
-            <span class="cart-count">3</span> 
-            
-            <div class="cart-dropdown" id="cart-dropdown" style="display: none;">
-                <p>Your cart is empty</p>
-                <a href="order.php" class="checkout-btn">View Cart</a>
-            </div>
+    <div class="card-shopping">
+            <a href="order.php">
+                <img src="frontend/icons/shopping-cart.png" alt="Shopping Cart" id="cart-icon">
+                <span class="cart-count">
+                    <?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                </span>
+            </a>
         </div>
+
 
         <?php if (isset($_SESSION['client_name'])) { ?>
             <div class="profile-dropdown">

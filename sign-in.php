@@ -38,17 +38,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="frontend/css/sign-up.css?v=<?php echo time(); ?>">
     <title>Sign Up</title>
 </head>
 <body>
-<form action="" method="POST">
-    <input type="text" name="last_name" placeholder="Last name" required>
-    <input type="text" name="first_name" placeholder="First name" required>
-    <input type="text" name="Phone_nb" placeholder="Phone number" required>
-    <button type="submit" name="signup">Sign Up</button>
-</form>
-<?php if (isset($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
-<a href="login.php">Login</a>
+    <div class="signup-container">
+        <h2 class="form-heading">Create an Account</h2>
+        <form action="" method="POST">
+            <input type="text" name="last_name" placeholder="Last name" required>
+            <input type="text" name="first_name" placeholder="First name" required>
+            <input type="text" name="Phone_nb" placeholder="Phone number" required>
+            <button type="submit" name="signup">Sign Up</button>
+        </form>
+        <?php if (isset($error)) { echo "<p class='error-message'>$error</p>"; } ?>
+        <p class="login-link">Already have an account? <a href="login.php">Login</a></p>
+    </div>
 </body>
 </html>

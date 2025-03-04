@@ -155,29 +155,49 @@ header .logo i {
 .cart-dropdown {
     display: none;
     position: absolute;
-    top: 40px; /* Adjust if needed */
+    top: 40px;
     right: 0;
-    width: 200px;
+    width: 250px;
     background: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Ensure it stays on top */
+    z-index: 1000;
     padding: 10px;
 }
+
 
 .cart-dropdown ul {
     list-style: none;
-    padding: 10px;
+    padding: 0;
     margin: 0;
-    max-height: 200px;
-    overflow-y: auto;
-
 }
 
 .cart-dropdown li {
-    padding: 8px;
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.cart-dropdown img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.order-details {
+    flex: 1;
+}
+
+.order-controls a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: var(--blue);
+}
+
+.delete-item {
+    color: red;
 }
 
 .checkout-btn {

@@ -23,64 +23,72 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 0 2rem;
+    font-size: 16px;
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.login-box {
+.signup-container {
     background: #fff;
-    padding: 3rem;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+    padding: 3rem 2rem;
     border-radius: .7rem;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+}
+
+.form-heading {
     text-align: center;
-}
-
-h2 {
     font-size: 2.5rem;
-    color: var(--blue);
-    margin-bottom: 1.5rem;
+    color: #333;
+    margin-bottom: 2rem;
 }
 
-input[type="text"] {
+input {
     width: 100%;
-    padding: 1.2rem;
-    font-size: 1.6rem;
-    border: 2px solid var(--blue);
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
     border-radius: .5rem;
-    margin-bottom: 1.5rem;
-    outline: none;
+    font-size: 1.6rem;
     transition: border-color .3s ease;
 }
 
-input[type="text"]:focus {
-    border-color: var(--blue-hover);
+input:focus {
+    border-color: var(--blue);
 }
 
 button {
     width: 100%;
-    padding: 1.5rem;
+    padding: 1rem;
     background: var(--blue);
-    color: #fff;
-    font-size: 1.8rem;
+    color: white;
+    font-size: 1.6rem;
     border-radius: .5rem;
     cursor: pointer;
-    transition: background-color .3s ease;
+    transition: background .3s ease;
 }
 
 button:hover {
     background: var(--blue-hover);
 }
 
-.error {
+.error-message {
     color: red;
-    margin-top: 1rem;
+    text-align: center;
     font-size: 1.4rem;
+    margin-top: 1rem;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+}
+
+.login-link a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }

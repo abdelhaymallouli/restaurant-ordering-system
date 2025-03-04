@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require 'config.php';
 
 $typeCuisine = isset($_GET['typeCuisine']) ? $_GET['typeCuisine'] : 'ALL';
@@ -20,7 +19,7 @@ if ($typeCuisine !== 'ALL' && $categoriePlat !== 'ALL') {
     $params['categoriePlat'] = $categoriePlat;
 }
 
-$stmt = $pdo->prepare(query: $sql);
+$stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $plats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,28 +28,63 @@ foreach ($plats as $plat) {
     $platsByCuisine[$plat['TypeCuisine']][] = $plat;
 }
 
+// Handle adding to cart
+if (isset($_GET['add_to_order'])) {
+    $idPlat = $_GET['add_to_order'];
 
+    // Fetch the item details from the database
+    $stmt = $pdo->prepare("SELECT * FROM plat WHERE idPlat = ?");
+    $stmt->execute([$idPlat]);
+    $plat = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if ($plat) {
+        $item = [
+            'id' => $plat['idPlat'],
+            'name' => $plat['nomPlat'],
+            'price' => $plat['prix'],
+            'image' => $plat['image'],
+            'quantity' => 1
+        ];
+
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+
+        // Check if item is already in cart
+        $found = false;
+        foreach ($_SESSION['cart'] as &$cartItem) {
+            if ($cartItem['id'] == $idPlat) {
+                $cartItem['quantity'] += 1;
+                $found = true;
+                break;
+            }
+        }
+
+        // If not found, add new item
+        if (!$found) {
+            $_SESSION['cart'][] = $item;
+        }
+    }
+
+    // Redirect to prevent re-adding on refresh
+    header("Location: index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="stylesheet" href="frontend/css/style.css?v=<?php echo time(); ?>">
     <title>M2l Restaurant</title>
 </head>
-
 <body>
-    <!-- header -->
+
     <?php include 'header.php'; ?>
 
-
-    <!-- hero section -->
     <section class="home" id="home">
         <div class="content">
             <h3>Tasty Bites</h3>
@@ -62,12 +96,9 @@ foreach ($plats as $plat) {
         </div>
     </section>
 
-
-    <!-- plat section -->
     <section class="Plats" id="PLats">
         <h1 class="heading">Our <span>Popular</span> Foods</h1>
 
-        <!-- Form with both selects and buttons -->
         <div class="form-filter">
             <form class="form-select" method="get" action="">
                 <select name="categoriePlat">
@@ -86,7 +117,7 @@ foreach ($plats as $plat) {
                     <option value="Italienne">Italienne</option>
                 </select>
 
-                <button class="button-filter" type="submit" style="">Filter</button>
+                <button class="button-filter" type="submit">Filter</button>
             </form>
         </div>
 
@@ -96,25 +127,21 @@ foreach ($plats as $plat) {
                 <?php foreach ($cuisinePlats as $plat): ?>
                     <div class="box">
                         <span class="price"><?= htmlspecialchars($plat['prix']) ?> DH</span>
-                        <img src="<?=  htmlspecialchars($plat['image']) ?>"
-                            alt="<?= htmlspecialchars($plat['nomPlat']) ?>">
+                        <img src="<?= htmlspecialchars($plat['image']) ?>" alt="<?= htmlspecialchars($plat['nomPlat']) ?>">
                         <h3><?= htmlspecialchars($plat['nomPlat']) ?></h3>
                         <div class="stars">
                             <p>Categorie : <?= htmlspecialchars($plat['categoriePlat']) ?></p>
                         </div>
-                        <a href="order.php?add_to_order=<?= $plat['idPlat'] ?>" class="btn">order now</a>
+                        <a href="index.php?add_to_order=<?= $plat['idPlat'] ?>" class="btn">order now</a>
                     </div>
-                <?php endforeach;?>
+                <?php endforeach; ?>
             </div>
-        <?php endforeach;?>
+        <?php endforeach; ?>
     </section>
 
-
-    <!-- Footer -->
     <?php include 'footer.php'; ?>
     <a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
 
 </body>
 <script src="frontend/js/script.js" defer></script>
-
 </html>
