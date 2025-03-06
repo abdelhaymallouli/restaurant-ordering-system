@@ -30,6 +30,5 @@ if (isset($_GET['update']) && isset($_GET['id'])) {
     exit();
 }
 
-$totalPrice = 0;
  ?>
 

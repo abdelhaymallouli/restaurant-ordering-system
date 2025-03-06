@@ -1,0 +1,206 @@
+.checkout-section {
+    margin-top: 60px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5%;
+    background: #f9f9f9; /* Light background for the section */
+}
+
+.order-confirmation {
+    background: #fff;
+    padding: 4rem;
+    border-radius: 1rem; /* Slightly larger radius for a modern look */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); /* Softer shadow */
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.order-confirmation:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.order-greeting {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.order-greeting .client-name {
+    font-weight: 600;
+    color: var(--blue); /* Assuming --blue is defined in your CSS variables */
+    text-transform: capitalize;
+}
+
+.order-greeting .thank-you {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.order-greeting .order-success {
+    display: block;
+    font-size: 1.6rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.order-details {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.order-details p {
+    font-size: 1.6rem;
+    color: #555;
+    margin: 0.5rem 0;
+}
+
+.order-details .label {
+    font-weight: 600;
+    color: #333;
+}
+
+.order-details .status {
+    color: var(--blue); /* Highlight status with blue color */
+    font-weight: 600;
+}
+
+.sub-heading {
+    font-size: 2rem;
+    color: #333;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.order-items {
+    list-style: none;
+    text-align: left;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    color: #666;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.3s ease; /* Smooth hover effect */
+}
+
+.order-item:hover {
+    background: #f7f7f7; /* Light background on hover */
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-right: 2rem;
+}
+
+.item-details {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.item-quantity {
+    color: #666;
+}
+
+.item-price {
+    font-weight: 600;
+    color: var(--blue); /* Highlight price with blue color */
+}
+
+.order-total {
+    margin: 2rem 0;
+    text-align: right;
+    padding: 1.5rem;
+    background: #f7f7f7;
+    border-radius: 0.5rem;
+}
+
+.order-total h3 {
+    font-size: 2rem;
+    color: #333;
+    margin: 0;
+}
+
+.total-amount {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.order-thanks {
+    font-size: 1.6rem;
+    color: #666;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    color: var(--blue);
+    background: white; /* Assuming --blue is defined in your CSS variables */
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.order-error {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.error-message {
+    font-size: 1.8rem;
+    color: #ff4d4d; /* Red color for error messages */
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .order-confirmation {
+        padding: 2rem;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-total {
+        text-align: center;
+    }
+}

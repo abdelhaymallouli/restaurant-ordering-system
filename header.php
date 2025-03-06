@@ -1,7 +1,5 @@
 <?php
-session_start();
 $totalPrice = 0;
-
 ?>
 <header>
     <a href="index.php" class="logo"><i class="fas fa-utensils"></i>M2l Restaurant</a>
@@ -29,7 +27,6 @@ $totalPrice = 0;
                                 <div class="order-details">
                                     <h4><?= htmlspecialchars($item['name']) ?></h4>
                                     <p><?= htmlspecialchars($item['price']) ?> DH</p>
-
                                 </div>
                                 <div class="order-controls">
                                     <a href="order.php?update=decrease&id=<?= $item['id'] ?>">-</a>
@@ -38,14 +35,12 @@ $totalPrice = 0;
                                 </div>
                                 <a href="order.php?remove=<?= $item['id'] ?>" class="delete-item">X</a>
                             </li>
-                         <p>Subtotal: <span class="subtotal"><?= $subtotal ?></span> DH</p>
-
+                            <p>Subtotal: <span class="subtotal"><?= $subtotal ?></span> DH</p>
                         <?php endforeach; ?>
                     </ul>
-
-                             <div class="cart-total">
-            <h3>Total: <span id="grand-total"><?= $totalPrice ?></span> DH</h3>
-         </div>
+                    <div class="cart-total">
+                        <h3>Total: <span id="grand-total"><?= $totalPrice ?></span> DH</h3>
+                    </div>
                     <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
                 <?php endif; ?>
             </div>
