@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2025 at 01:59 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Erstellungszeit: 13. Apr 2025 um 19:58
+-- Server-Version: 10.4.32-MariaDB
+-- PHP-Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `solirestaurant`
+-- Datenbank: `solirestaurant`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Tabellenstruktur für Tabelle `client`
 --
 
 CREATE TABLE `client` (
@@ -35,7 +35,7 @@ CREATE TABLE `client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `client`
+-- Daten für Tabelle `client`
 --
 
 INSERT INTO `client` (`idClient`, `nomCl`, `prenomCl`, `telCl`) VALUES
@@ -49,12 +49,13 @@ INSERT INTO `client` (`idClient`, `nomCl`, `prenomCl`, `telCl`) VALUES
 (8, 'Jabri', 'Imane', '0689012345'),
 (9, 'Fassi', 'Mehdi', '0690123456'),
 (10, 'Belkadi', 'Hajar', '0601122334'),
-(11, 'Abdelhay', 'MALLOULI', '0635848683');
+(11, 'Abdelhay', 'MALLOULI', '0635848683'),
+(12, 'ahmed', 'mallouli', '062030456');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commande`
+-- Tabellenstruktur für Tabelle `commande`
 --
 
 CREATE TABLE `commande` (
@@ -62,10 +63,10 @@ CREATE TABLE `commande` (
   `dateCmd` datetime DEFAULT current_timestamp(),
   `Statut` varchar(100) DEFAULT 'en attente',
   `idCl` int(11) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `commande`
+-- Daten für Tabelle `commande`
 --
 
 INSERT INTO `commande` (`idCmd`, `dateCmd`, `Statut`, `idCl`) VALUES
@@ -78,7 +79,7 @@ INSERT INTO `commande` (`idCmd`, `dateCmd`, `Statut`, `idCl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commande_plat`
+-- Tabellenstruktur für Tabelle `commande_plat`
 --
 
 CREATE TABLE `commande_plat` (
@@ -88,7 +89,7 @@ CREATE TABLE `commande_plat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `commande_plat`
+-- Daten für Tabelle `commande_plat`
 --
 
 INSERT INTO `commande_plat` (`idPlat`, `idCmd`, `qte`) VALUES
@@ -101,7 +102,7 @@ INSERT INTO `commande_plat` (`idPlat`, `idCmd`, `qte`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plat`
+-- Tabellenstruktur für Tabelle `plat`
 --
 
 CREATE TABLE `plat` (
@@ -111,10 +112,10 @@ CREATE TABLE `plat` (
   `TypeCuisine` varchar(250) NOT NULL,
   `prix` decimal(6,2) NOT NULL,
   `image` varchar(500) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `plat`
+-- Daten für Tabelle `plat`
 --
 
 INSERT INTO `plat` (`idPlat`, `nomPlat`, `categoriePlat`, `TypeCuisine`, `prix`, `image`) VALUES
@@ -151,58 +152,58 @@ INSERT INTO `plat` (`idPlat`, `nomPlat`, `categoriePlat`, `TypeCuisine`, `prix`,
 (31, 'Mochi', 'dessert', 'Chinoise', 400.00, 'https://images.getrecipekit.com/20240411054015-peach-mochi.webp?class=16x9');
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `client`
+-- Indizes für die Tabelle `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`idClient`),
   ADD UNIQUE KEY `telCl` (`telCl`);
 
 --
--- Indexes for table `commande`
+-- Indizes für die Tabelle `commande`
 --
 ALTER TABLE `commande`
   ADD PRIMARY KEY (`idCmd`),
   ADD KEY `idCl` (`idCl`);
 
 --
--- Indexes for table `commande_plat`
+-- Indizes für die Tabelle `commande_plat`
 --
 ALTER TABLE `commande_plat`
   ADD PRIMARY KEY (`idPlat`,`idCmd`),
   ADD KEY `idCmd` (`idCmd`);
 
 --
--- Indexes for table `plat`
+-- Indizes für die Tabelle `plat`
 --
 ALTER TABLE `plat`
   ADD PRIMARY KEY (`idPlat`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `plat`
+-- AUTO_INCREMENT für Tabelle `plat`
 --
 ALTER TABLE `plat`
-  MODIFY `idPlat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPlat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- Constraints for dumped tables
+-- Constraints der exportierten Tabellen
 --
 
 --
--- Constraints for table `commande`
+-- Constraints der Tabelle `commande`
 --
 ALTER TABLE `commande`
   ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`idCl`) REFERENCES `client` (`idClient`);
 
 --
--- Constraints for table `commande_plat`
+-- Constraints der Tabelle `commande_plat`
 --
 ALTER TABLE `commande_plat`
   ADD CONSTRAINT `commande_plat_ibfk_1` FOREIGN KEY (`idPlat`) REFERENCES `plat` (`idPlat`),
