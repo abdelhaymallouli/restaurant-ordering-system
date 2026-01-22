@@ -72,7 +72,7 @@ The database `solirestaurant` consists of three main tables:
 
 1. **Clone the repository** to your server's root directory (e.g., `C:\xampp\htdocs\restaurant-ordering-system`).
    ```bash
-   git clone https://github.com/yourusername/restaurant-ordering-system.git
+   git clone https://github.com/abdelhaymallouli/restaurant-ordering-system.git
    ```
 2. **Start Servers**: Open XAMPP Control Panel and start **Apache** and **MySQL**.
 3. **Setup Database**:
